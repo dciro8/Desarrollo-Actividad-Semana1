@@ -1,0 +1,16 @@
+C:\Study\visual Code\bin\Debug\net5.0\visual Code.exe
+C:\Study\visual Code\bin\Debug\net5.0\visual Code.deps.json
+C:\Study\visual Code\bin\Debug\net5.0\visual Code.runtimeconfig.json
+C:\Study\visual Code\bin\Debug\net5.0\visual Code.runtimeconfig.dev.json
+C:\Study\visual Code\bin\Debug\net5.0\visual Code.dll
+C:\Study\visual Code\bin\Debug\net5.0\ref\visual Code.dll
+C:\Study\visual Code\bin\Debug\net5.0\visual Code.pdb
+C:\Study\visual Code\obj\Debug\net5.0\visual Code.csprojAssemblyReference.cache
+C:\Study\visual Code\obj\Debug\net5.0\visual Code.GeneratedMSBuildEditorConfig.editorconfig
+C:\Study\visual Code\obj\Debug\net5.0\visual Code.AssemblyInfoInputs.cache
+C:\Study\visual Code\obj\Debug\net5.0\visual Code.AssemblyInfo.cs
+C:\Study\visual Code\obj\Debug\net5.0\visual Code.csproj.CoreCompileInputs.cache
+C:\Study\visual Code\obj\Debug\net5.0\visual Code.dll
+C:\Study\visual Code\obj\Debug\net5.0\ref\visual Code.dll
+C:\Study\visual Code\obj\Debug\net5.0\visual Code.pdb
+C:\Study\visual Code\obj\Debug\net5.0\visual Code.genruntimeconfig.cache
