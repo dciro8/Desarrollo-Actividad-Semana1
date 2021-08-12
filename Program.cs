@@ -1,120 +1,145 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace visual_Code
+
+Console.WriteLine(">>> Week 1.4 <<<" + args.Length);
+
+var input = new[]{
+    "Abcde","Efght","cererw3","79865","qwe33er","Edasdasd sdfsadf asf sadf asf asdf asdf asdf asdf"
+};
+
+var iteration = int.TryParse(args.Length > 0 ? args[0] : "1", out int valueExit) ? valueExit : 1;
+var showsError = bool.TryParse(args.Length > 1 ? args[1] : "true", out bool printError) ? printError : true;
+
+runProcess(input, new Func<string, string[]>(ValidateWithReg), iteration, showsError);
+runProcess(input, new Func<string, string[]>(ValidateWithException), iteration, showsError);
+runProcess(input, new Func<string, string[]>(ValidateWithIf), iteration, showsError);
+
+
+static void runProcess(string[] values, Func<string, string[]> validationObject, int iterations, bool showsError)
 {
-    class Program
+    if (values == null)
     {
-        static void Main(string[] args)
+        return;
+    }
+
+    var startTime = DateTime.Now;
+    var stratMemory = Process.GetCurrentProcess().WorkingSet64;
+
+    for (int iteration = 0; iteration < iterations; iteration++)
+    {
+        foreach (var id in values)
         {
-            Console.WriteLine("Presiona tecla enter para iniciar prueba");
-            var text = Console.ReadLine();
-
-            var currentDate = DateTime.Now;
-
-            string charNormal = "David Fernando Ciro Zapata";
-
-            string charNoLongitudMin = "Davi";
-
-            string charNoLongitudMax = "David Fernando Ciro Zapata El mejor a nivel de Persona y A nivel professional que tendra una super dama al lado";
-
-            string charNoTolower = "david Fernando Ciro Zapata";
-
-
-            for (int i = 0; i < 1000000; i++)
-            {
-                var testCharNormal = ValidateRegularExpressionString(charNormal);
-                var testCharNoLongitudMin = ValidateRegularExpressionString(charNoLongitudMin);
-                var testcharNoLongitudMax = ValidateRegularExpressionString(charNoLongitudMax);
-                var testcharNoTolower = ValidateRegularExpressionString(charNoTolower);
-            }
-            var endDate = DateTime.Now;
-
-            Console.WriteLine($"{Environment.NewLine} tiempo inicio {currentDate},  tiempo final {endDate}");
-            Console.Write($"{Environment.NewLine}Press any key to exit...");
-            Console.ReadKey(true);
-        }
-        static List<string> ValidateRegularExpressionString(string input)
-        {
-            string countCharacter = @"^\w{5,32}\b";
-
-            List<string> constrain = new List<string>();
-
-            var count = Regex.Match(input, countCharacter);
-
-            if (!count.Success)
-            {
-                constrain.Add($"la cantdad de caracteres es no coincide con la longitud esperada entre  - 32 {input.Trim().Length}");
-            }
-
-            string firtsCharacter = @"^[A-Z]+";
-
-            var matches = Regex.Match(input, firtsCharacter);
-
-            if (!matches.Success)
-            {
-                constrain.Add($"el Primer Caracter es en minuscula");
-            }
-
-            Regex specialCharacter = new Regex(@"^[a-zA-Z-Z0-9- ]+$");
-
-            if (!specialCharacter.IsMatch(input))
-            {
-                constrain.Add($" Contiene caracteres especiales");
-            }
-            return constrain;
-        }
-
-        static List<string> ValidateIfString(string input)
-        {
-
-            List<string> constrain = new List<string>();
-
-            if (input.Length < 5 || input.Length > 32)
-            {
-                constrain.Add($"la cantdad de caracteres es no coincide con la longitud esperada entre 5 - 32 {input.Trim().Length}");
-            }
-
-
-            if (input.Substring(0, 1).Any(c => char.IsLower(c)))
-            {
-                constrain.Add($"Contiene minusculas");
-            }
-
-            var withoutSpecial = new string(input.Where(c => Char.IsLetterOrDigit(c)
-                                             || Char.IsWhiteSpace(c)).ToArray());
-
-            if (input != withoutSpecial)
-            {
-                constrain.Add($" Contiene caracteres especiales");
-            }
-            return constrain;
-        }
-
-        static Exception ValidateExceptionString(string input)
-        {
-            if (input.Length < 5 || input.Length > 32)
-            {
-                Exception exception = new Exception($"la cantdad de caracteres es no coincide con la longitud esperada entre 5 - 32 {input.Trim().Length}");
-                return exception;
-            }
-            if (input.Substring(0, 1).Any(c => char.IsLower(c)))
-            {
-                Exception exception = new Exception($"Contiene minusculas");
-                return exception;
-            }
-
-            var withoutSpecial = new string(input.Where(c => Char.IsLetterOrDigit(c) || Char.IsWhiteSpace(c)).ToArray());
-
-            if (input != withoutSpecial)
-            {
-                Exception exception = new Exception($" Contiene caracteres especiales");
-                return exception;
-            }
-            return null;
+            var errors = validationObject(id);
+            PrintErrors(id, errors, showsError);
         }
     }
+    printUsageMemory(validationObject.Method.Name, startTime, stratMemory);
+}
+
+static string[] ValidateWithIf(string id)
+{
+    var errors = new List<string>();
+    id = clearId(id);
+
+    if (id.Length < 5 || id.Length > 32)
+    {
+        errors.Add("A valid ID must have a minimum of 5 characters and a maximun of 32");
+    }
+    if (id.Length > 0 && !(id[0] >= 'A' && id[0] <= 'Z'))
+    {
+        errors.Add("A valid ID must start with a capital letter: A-Z");
+    }
+
+    return errors.ToArray();
+}
+
+
+static string[] ValidateWithException(string id)
+{
+    var errors = new List<string>();
+    id = clearId(id);
+
+    try
+    {
+        if (id.Length < 5 || id.Length > 32)
+        {
+            throw new ApplicationException("A valid ID must have a minimum of 5 characters and a maximun of 32");
+        }
+    }
+    catch (ApplicationException ex)
+    {
+        errors.Add(ex.Message);
+    }
+
+    try
+    {
+        if (id.Length > 0 && !(id[0] >= 'A' && id[0] >= 'Z'))
+        {
+            throw new ApplicationException("A valid id must start with a capital letter: A-Z");
+        }
+    }
+    catch (ApplicationException ex)
+    {
+        errors.Add(ex.Message);
+    }
+
+    return errors.ToArray();
+}
+
+static string[] ValidateWithReg(string id)
+{
+    var partRule1 = @"^\w{5,32}$";
+    var partRule2 = @"[A-Z]";
+
+    var errors = new List<string>();
+
+    if (!Regex.IsMatch(id = clearId(id), partRule1))
+    {
+        errors.Add("A valid ID must have a minimum of 5 characters and a maximun of 32");
+    }
+    if (id.Length > 0 && !Regex.IsMatch(id.Substring(0, 1), partRule2))
+    {
+        errors.Add("A valid id must start with a capital letter: A-Z");
+    }
+
+    return errors.ToArray();
+}
+
+static void PrintErrors(string id, string[] errors, bool showError)
+{
+    if (!showError)
+    {
+        return;
+    }
+
+    var detail = errors?.Length > 0 ? string.Empty : "Ok";
+
+    Console.WriteLine($"Identification {id}, Validaton Result {detail}");
+    foreach (var error in errors)
+    {
+        Console.WriteLine($"* Error {error}");
+    }
+
+    Console.WriteLine();
+
+}
+
+static string clearId(string id)
+{
+    return (id != null && id.Length > 0) ? id : string.Empty;
+}
+
+static void printUsageMemory(string methodName, DateTime startTime, long startMemory)
+{
+    var duration = DateTime.Now.Subtract(startTime).TotalMilliseconds;
+    var memoryUsage = (Process.GetCurrentProcess().WorkingSet64 - startMemory) / 1024;
+
+    Console.WriteLine();
+    Console.WriteLine($"# Method {methodName} duration {duration} ms, memory usage {memoryUsage} kb");
+
 }
 

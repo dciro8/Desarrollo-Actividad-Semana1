@@ -14,3 +14,19 @@ C:\Study\visual Code\obj\Debug\net5.0\visual Code.dll
 C:\Study\visual Code\obj\Debug\net5.0\ref\visual Code.dll
 C:\Study\visual Code\obj\Debug\net5.0\visual Code.pdb
 C:\Study\visual Code\obj\Debug\net5.0\visual Code.genruntimeconfig.cache
+C:\Study\Desarrollo-Actividad-Semana1\bin\Debug\net5.0\visual Code.exe
+C:\Study\Desarrollo-Actividad-Semana1\bin\Debug\net5.0\visual Code.deps.json
+C:\Study\Desarrollo-Actividad-Semana1\bin\Debug\net5.0\visual Code.runtimeconfig.json
+C:\Study\Desarrollo-Actividad-Semana1\bin\Debug\net5.0\visual Code.runtimeconfig.dev.json
+C:\Study\Desarrollo-Actividad-Semana1\bin\Debug\net5.0\visual Code.dll
+C:\Study\Desarrollo-Actividad-Semana1\bin\Debug\net5.0\ref\visual Code.dll
+C:\Study\Desarrollo-Actividad-Semana1\bin\Debug\net5.0\visual Code.pdb
+C:\Study\Desarrollo-Actividad-Semana1\obj\Debug\net5.0\visual Code.csprojAssemblyReference.cache
+C:\Study\Desarrollo-Actividad-Semana1\obj\Debug\net5.0\visual Code.GeneratedMSBuildEditorConfig.editorconfig
+C:\Study\Desarrollo-Actividad-Semana1\obj\Debug\net5.0\visual Code.AssemblyInfoInputs.cache
+C:\Study\Desarrollo-Actividad-Semana1\obj\Debug\net5.0\visual Code.AssemblyInfo.cs
+C:\Study\Desarrollo-Actividad-Semana1\obj\Debug\net5.0\visual Code.csproj.CoreCompileInputs.cache
+C:\Study\Desarrollo-Actividad-Semana1\obj\Debug\net5.0\visual Code.dll
+C:\Study\Desarrollo-Actividad-Semana1\obj\Debug\net5.0\ref\visual Code.dll
+C:\Study\Desarrollo-Actividad-Semana1\obj\Debug\net5.0\visual Code.pdb
+C:\Study\Desarrollo-Actividad-Semana1\obj\Debug\net5.0\visual Code.genruntimeconfig.cache

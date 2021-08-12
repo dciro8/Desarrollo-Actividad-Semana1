@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Study\\visual Code\\visual Code.csproj",
+      "projectUniqueName": "C:\\Study\\Desarrollo-Actividad-Semana1\\visual Code.csproj",
       "projectName": "visual Code",
-      "projectPath": "C:\\Study\\visual Code\\visual Code.csproj",
+      "projectPath": "C:\\Study\\Desarrollo-Actividad-Semana1\\visual Code.csproj",
       "packagesPath": "C:\\Users\\davidcz\\.nuget\\packages\\",
-      "outputPath": "C:\\Study\\visual Code\\obj\\",
+      "outputPath": "C:\\Study\\Desarrollo-Actividad-Semana1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
